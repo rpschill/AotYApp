@@ -1,0 +1,71 @@
+<div class="inline-form-field-wrapper">
+
+  <span class="filter-label">Filter by </span>
+  <mat-form-field class="inline-form-field" [appearance]="'outline'">
+    <mat-select #optionSelect (selectionChange)="onSelectionChange($event)">
+      <mat-option value="">{{ filterOptions.get(options.NULL) }}</mat-option>
+      <mat-option value="year_released">{{ filterOptions.get(options.YEAR) }}</mat-option>
+      <mat-option value="album_artist">{{ filterOptions.get(options.ARTIST) }}</mat-option>
+      <mat-option value="album_genre">{{ filterOptions.get(options.GENRE) }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="inline-form-field" [appearance]="'outline'">
+    <input
+      matInput
+      #filterText
+      [disabled]="optionSelect.value === '' || optionSelect.value === undefined"
+      (focus)="createFilter(optionSelect.value)"
+      (keyup)="applyFilter($event)"
+      [(ngModel)]="filterTerm"
+    />
+  </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="year_released">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Year </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.year_released }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="album_title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.album_title }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="album_artist">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Artist </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.album_artist }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="album_genre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Genre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.album_genre }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+  </mat-table>
+
+  <div class="paginator-wrapper" style="font-size: 12px; font-weight: 500;">
+    <mat-paginator
+      [pageSize]="paginatorPageSize"
+      [hidePageSize]="true"
+      [pageIndex]="pageIndex"
+      (page)="normalizePageIndexInput($event.pageIndex.valueOf())"
+      showFirstLastButtons
+      #paginatorEl
+    ></mat-paginator>
+
+    <div class="page-entry-wrapper">
+      <span class="paginator-label paginator-label-prefix">Page </span>
+      <mat-form-field [appearance]="'standard'" class="page-input">
+        <input matInput #pageInput [(ngModel)]="paginatorPageIndex" (keyup)="normalizePageIndex($event)" />
+      </mat-form-field>
+      <span class="paginator-label paginator-label-suffix">of {{ this.getTotalPages() }}</span>
+      </div>
+  </div>
+</div>

@@ -15,7 +15,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "AotY",
+      "prefix": "alb",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "AotYApp"
+  "defaultProject": "AotYApp",
+  "cli": {
+    "analytics": "bdc3d8fb-c4a4-4e80-b44c-26b1598c391b"
+  }
 }

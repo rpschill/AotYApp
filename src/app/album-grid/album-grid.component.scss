@@ -1,0 +1,72 @@
+.inline-form-field-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  max-width: 300px;
+}
+
+.inline-form-field {
+  margin-right: 16px;
+}
+
+.mat-row:nth-child(odd) {
+  background-color: #f8f7f7;
+}
+
+.mat-header-row.cdk-header-row {
+  background-color: #7a96b9;
+}
+
+.mat-cell {
+  border-right: 2px solid rgb(0,0,0,0.26);
+  margin-right: 10px;
+}
+
+.mat-cell:last-of-type {
+  border-right: none;
+}
+
+.filter-label {
+  min-width: 60px;
+  height: 50px;
+  line-height: 80px;
+  padding-top: 4px;
+  font-weight: 500;
+}
+
+.paginator-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.page-input {
+  padding: 0;
+  min-width: 0;
+  flex-shrink: 0;
+  width: 40px;
+  text-align: center;
+}
+
+.paginator-label {
+  height: 40px;
+  line-height: 40px;
+  margin-top: 12px;
+
+  &.paginator-label-prefix {
+    padding-right: 10px;
+  }
+
+  &.paginator-label-suffix {
+    margin-right: 20px;
+  }
+}
+
+.page-entry-wrapper {
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+  flex-direction: row;
+  margin-top: -6px;
+}
