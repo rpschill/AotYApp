@@ -103,10 +103,26 @@ export class AlbumGridComponent implements OnInit, AfterViewInit {
   normalizePageIndex(ev): void {
     this.pageIndex = ev.target.value - 1;
     this.paginatorPageIndex = ev.target.value;
+
+    this.validateTotalPages(ev.target.value);
   }
 
   getTotalPages(): number {
-    return Math.floor(this.paginatorDataLength / this.paginatorPageSize);
+    this.totalPages = Math.floor(this.paginatorDataLength / this.paginatorPageSize);
+    return this.totalPages;
+  }
+
+  validateTotalPages(val: number): void {
+
+    if (val > this.totalPages) {
+      this.paginatorPageIndex = this.totalPages;
+      this.pageIndex = this.totalPages - 1;
+    }
+
+    if (val < 0) {
+      this.paginatorPageIndex = 1;
+      this.pageIndex = 0;
+    }
   }
 
 }

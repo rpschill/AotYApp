@@ -65,7 +65,7 @@
       <mat-form-field [appearance]="'standard'" class="page-input">
         <input matInput #pageInput [(ngModel)]="paginatorPageIndex" (keyup)="normalizePageIndex($event)" />
       </mat-form-field>
-      <span class="paginator-label paginator-label-suffix">of {{ this.getTotalPages() }}</span>
+      <span class="paginator-label paginator-label-suffix">of {{ getTotalPages() }}</span>
       </div>
   </div>
 </div>
